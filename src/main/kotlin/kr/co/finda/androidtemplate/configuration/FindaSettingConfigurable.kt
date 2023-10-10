@@ -1,7 +1,6 @@
 package kr.co.finda.androidtemplate.configuration
 
 import com.intellij.openapi.options.Configurable
-import kr.co.finda.androidtemplate.service.WaistUpService
 import kr.co.finda.androidtemplate.persistent.WaistUpStateComponent
 import javax.swing.JComponent
 
@@ -28,8 +27,6 @@ class FindaSettingConfigurable : Configurable {
         state.isEnabled = component.waistUpCheckBox.isSelected
         state.dialogDisplayTime = component.displayTimeTextField.text.toLong()
         state.dialogWaitTime = component.waitTimeTextField.text.toLong()
-
-        WaistUpService.setNotificationEnable(state.isEnabled)
     }
 
     override fun getPreferredFocusedComponent(): JComponent {

@@ -32,10 +32,15 @@ class CreateFindaTemplateAction : AnAction() {
             }
 
             val packageName = FileUtil.getPackageByPath(selectedDirectory.path)
-            createTemplateFile(name, packageName, ScreenType.ACTIVITY, selectedDirectory)
-            createTemplateFile(name, packageName, ScreenType.EES, selectedDirectory)
-            createTemplateFile(name, packageName, ScreenType.SCREEN, selectedDirectory)
-            createTemplateFile(name, packageName, ScreenType.VIEW_MODEL, selectedDirectory)
+            val templateList = listOf(
+                ScreenType.ACTIVITY,
+                ScreenType.EES,
+                ScreenType.SCREEN,
+                ScreenType.VIEW_MODEL
+            )
+            templateList.forEach { screenType ->
+                createTemplateFile(name, packageName, screenType, selectedDirectory)
+            }
         }
     }
 
@@ -50,17 +55,17 @@ class CreateFindaTemplateAction : AnAction() {
         selectedDirectoryPath: String
     ): Boolean {
         val templateList = listOf(
-                ScreenType.ACTIVITY,
-                ScreenType.EES,
-                ScreenType.SCREEN,
-                ScreenType.VIEW_MODEL
+            ScreenType.ACTIVITY,
+            ScreenType.EES,
+            ScreenType.SCREEN,
+            ScreenType.VIEW_MODEL
         )
-        templateList.forEach {screenType ->
+        templateList.forEach { screenType ->
             val isConflictFileName = FileUtil.hasConflictFileName(
-                    "${name}${screenType.postfix}.kt",
-                    selectedDirectoryPath
+                "${name}${screenType.postfix}.kt",
+                selectedDirectoryPath
             )
-            if(isConflictFileName) return true
+            if (isConflictFileName) return true
         }
         return false
     }
@@ -85,13 +90,9 @@ class CreateFindaTemplateAction : AnAction() {
 
 class CreateFindaTemplateDialogUi : DialogUi {
 
-    private val screenTypeModel = EnumComboBoxModel(ScreenType::class.java)
-
     val nameTextField = JBTextField()
-    private val screenTypeComboBox = ComboBox(screenTypeModel)
     private val panel = FormBuilder.createFormBuilder()
         .addLabeledComponent("화면 이름:", nameTextField)
-        .addLabeledComponent("화면 종류:", screenTypeComboBox)
         .panel
 
     override fun generatePanel(): JPanel = panel

@@ -5,6 +5,6 @@ enum class Template(
 ) {
     ACTIVITY("ActivityTemplate.txt"),
     EES("EesTemplate.txt"),
-    SCREEN("ScreenTemplate.txt.txt"),
+    SCREEN("ScreenTemplate.txt"),
     VIEW_MODEL("ViewModelTemplate.txt"),
 }

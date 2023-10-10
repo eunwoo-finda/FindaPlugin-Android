@@ -60,7 +60,6 @@
         <defaultLiveTemplates file="/liveTemplates/FindaTest.xml"/>
 
         <applicationService serviceImplementation="kr.co.finda.androidtemplate.persistent.WaistUpStateComponent"/>
-        <projectService serviceImplementation="kr.co.finda.androidtemplate.service.WaistUpService"/>
 
         <applicationConfigurable parentId="tools"
                                  instance="kr.co.finda.androidtemplate.configuration.FindaSettingConfigurable"
